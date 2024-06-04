@@ -27,8 +27,10 @@ function App() {
       [2, 4, 6],
     ];
 
+
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
+
       if (
         squares[a] &&
         squares[a] === squares[b] &&
@@ -37,11 +39,18 @@ function App() {
         return squares[a];
       }
     }
+    
     return null;
   };
 
+  const winner = calculateWinner(squares);
+  let status;
+
+  winner ? status = "Winner: " + winner : status = "Next player: " + (xIsNext ? "X" : "O");
+
   return (
     <>
+      <h2>{status}</h2>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
